@@ -1,5 +1,10 @@
 # SMTP-Invoke-Credentials-Phish
-# Disclaimer : Scripts are for Education Purpusoses only and any attempt of damage or malicious activity performed using this script will not bring any liability to the author
+
+<h2> Disclaimer : </h2>
+  
+<p>
+Scripts are for Education Purpusoses only and any attempt of damage or malicious activity performed using this script will not bring any liability to the author 
+</p>
 
 <h2> Windows 8 version uses powershell credential prompt method to get victim's password </h2>
 <h2> Windows 10 version uses Windows Defender Security Prompt (Anti Virus Evasion)</h2>
