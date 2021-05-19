@@ -6,7 +6,7 @@
 Scripts are for Education Purpusoses only and any attempt of damage or malicious activity performed using this script will not bring any liability to the author 
 </p>
 
-<h2>Version Variations</h2>
+<h2>Versions</h2>
 
 <p> Windows 8 version uses powershell credential prompt method to get victim's password </p>
 <p> Windows 10 version uses Windows Defender Security Prompt (Anti Virus Evasion)</p>
