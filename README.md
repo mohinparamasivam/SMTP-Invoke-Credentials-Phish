@@ -13,6 +13,8 @@ Scripts are for Education Purpusoses only and any attempt of damage or malicious
 
 <h2> References  </h2>
 <p> Based on Nishang's Invoke-CredentialsPhish.ps1 & https://github.com/enigma0x3/Invoke-LoginPrompt <p>
+<p> Convert PowerShell to Batch Script based on 
+  https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/converting-powershell-to-batch </p>
    
 <h2> Additional Features  </h2>
     
