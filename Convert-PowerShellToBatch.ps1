@@ -15,3 +15,5 @@ function Convert-PowerShellToBatch
         "@echo off`npowershell.exe -NoExit -w hidden -encodedCommand $encoded" | Set-Content -Path $newPath -Encoding Ascii
     }
 }
+
+#Get-ChildItem -Path C:\path\to\powershell\scripts -Filter *.ps1 | Convert-PowerShellToBatch
